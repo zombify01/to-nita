@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top,#ffd6e0,#fff0f5 50%,#ffffff);
+    font-family:'Poppins',sans-serif;
+    transition:all .5s ease;
+}
+
+/* Floating animation */
+
+.scene{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:580px;
+    padding:2rem 0;
+    animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.stack{
+    position:relative;
+    width:320px;
+    height:480px;
+    cursor:pointer;
+    transition:transform .4s ease;
+}
+
+.stack:hover{
+    transform:scale(1.03);
+}
+
+.hint{
+    display:block;
+    margin-top:20px;
+    text-align:center;
+    color:#c78fa0;
+    font-style:italic;
+    font-size:14px;
+}
+
+/* Letter Card */
+
+#letter-card{
+    position:absolute;
+    left:25px;
+    top:320px;
+    width:340px;
+    height:400px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:15px;
+
+    padding:16px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.15);
+
+    z-index:10;
+    overflow:hidden;
+
+    transform:translateY(120px) scale(.9);
+    opacity:0;
+
+    transition:
+    transform 1s cubic-bezier(.22,1,.36,1),
+    opacity .8s ease;
+}
+
+#letter-card.out{
+    transform:translateY(-90px) scale(1);
+    opacity:1;
+}
+
+.greeting{
+    font-family:'Playfair Display',serif;
+    font-size:14px;
+    color:#cc7d95;
+    margin-bottom:10px;
+}
+
+.message{
+    color:#6f5a63;
+    font-size:11px;
+    line-height:1.8;
+}
+
+.divider{
+    border:none;
+    border-top:1px dashed #f0c4cc;
+    margin:8px 0;
+}
+
+.signoff{
+    text-align:right;
+    font-style:italic;
+    color:#c29aa8;
+    font-size:11px;
+}
+
+/* Photos */
+
+.photos-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:10px 0;
+}
+
+.photos-row img{
+    width:72px;
+    height:72px;
+    object-fit:cover;
+
+    border-radius:10px;
+    border:2px solid #f8cad5;
+
+    box-shadow:
+    0 5px 15px rgba(232,146,158,.25);
+
+    transition:all .4s ease;
+}
+
+.photos-row img:nth-child(1){
+    transform:rotate(-4deg);
+}
+
+.photos-row img:nth-child(2){
+    transform:rotate(4deg);
+}
+
+.photos-row img:hover{
+    transform:scale(1.1) rotate(0deg);
+}
+
+/* Hearts */
+
+.heart-row{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    margin-top:5px;
+}
+
+/* Envelope */
+
+#env-svg{
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index:20;
+    filter:drop-shadow(0 15px 25px rgba(0,0,0,.12));
+}
+
+#flap{
+    transform-origin:160px 0px;
+    transform-box:fill-box;
+
+    transition:
+    transform .8s cubic-bezier(.4,0,.2,1);
+}
+
+#heart-seal{
+    transform-origin:center;
+    transform-box:fill-box;
+
+    transition:
+    transform .4s ease,
+    opacity .4s ease;
+}
+
+.opened #flap{
+    transform:rotateX(180deg);
+}
+
+.opened #heart-seal{
+    transform:scale(0);
+    opacity:0;
+}
+
+/* Floating Hearts Background */
+
+.hearts{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-50px;
+    font-size:22px;
+    color:#ff88aa;
+    opacity:.7;
+
+    animation:rise 8s linear infinite;
+}
+
+.hearts span:nth-child(1){
+    left:10%;
+    animation-delay:0s;
+}
+
+.hearts span:nth-child(2){
+    left:25%;
+    animation-delay:2s;
+}
+
+.hearts span:nth-child(3){
+    left:50%;
+    animation-delay:4s;
+}
+
+.hearts span:nth-child(4){
+    left:70%;
+    animation-delay:1s;
+}
+
+.hearts span:nth-child(5){
+    left:90%;
+    animation-delay:3s;
+}
+
+@keyframes rise{
+    from{
+        transform:
+        translateY(0)
+        scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.8;
+    }
+
+    to{
+        transform:
+        translateY(-110vh)
+        scale(1.4);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+    .stack{
+        transform:scale(.85);
+    }
+
+    .stack:hover{
+        transform:scale(.88);
+    }
+
+    #letter-card{
+        width:260px;
+        left:30px;
+    }
+
+}
